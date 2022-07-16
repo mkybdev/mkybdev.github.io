@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <title>カニとじゃんけんしたらパー出されてあいこだった</title>
+  <script src="main.js" type="text/javascript" charset="utf-8"></script>
+  <script src="https://kit.fontawesome.com/1dd00df438.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+  <link rel="icon" href="img/crab.ico">
+</head>
+<body onload="gamestart();">
+  <div id="info">
+    <div id="currscore"></div>
+    <div id="currprob"></div>
+  </div>
+  <div id="rnd"></div>
+  <div id="crab">
+    <img src="img/crab.gif" id="cr">
+    <div id="crhw">
+      <img
+      src=""
+      alt=""
+      style="visibility: hidden"
+      id="crh"
+      >
+    </div>
+  </div>
+  <div id="crabhand">
+  </div>
+  <div id="wrapper">
+    <div id="myhand">
+      <p id="htype" onclick="hand(0)">&#9654; グー</p>
+      <p id="htype" onclick="hand(1)">&#9654; チョキ</p>
+      <p id="htype" onclick="hand(2)">&#9654; パー</p>
+    </div>
+    <div id="message"></div>
+  </div>
+</body>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <script src="https://kit.fontawesome.com/1dd00df438.js" crossorigin="anonymous"></script>
+  <title>カニとじゃんけんしたらパー出されてあいこだった</title>
+  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+  <link rel="icon" href="img/crab.ico">
+</head>
+<body id="reg">
+  <p id="des_1"><p>
+  <p id="des_2">※公序良俗に反するような<br>名前の登録はおやめください</p>
+  <div id="namew">
+    <input type="text" id="name" maxlength="5" size="20vmax" autocomplete="off" style="visibility: hidden;">
+  </div>
+  <div id="subcan"></div>
+  <script type="text/javascript">
+    setTimeout(function () {
+        let viewheight = window.innerHeight;
+        let viewwidth = window.innerWidth;
+        let viewport = document.querySelector("meta[name=viewport]");
+        viewport.setAttribute("content", "height=" + viewheight + "px, width=" + viewwidth + "px, initial-scale=1.0");
+    }, 300);
+    /*
+    if (document.cookie.indexOf('visited=yes') === -1) {
+      document.cookie = 'visited=yes';
+      document.cookie = 'id=' + new Date().getTime().toString();
+    }
+    document.cookie = 'expires=Tue, 31-Dec-2037 00:00:00 GMT';
+    let cookies = document.cookie.split(';');
+    let userid;
+    for (let i of cookies) {
+      let iarr = i.split('=');
+      if (iarr[0] == ' id') {
+        userid = iarr[1];
+      }
+    }
+    */
+    function getq() {
+  	let qstr = window.location.search.slice(1);
+      	let q = {};
+  	if (!qstr) {
+    		return q;
+  	}
+  	qstr.split('&').forEach(function(qstr) {
+    		let qarr = qstr.split('=');
+    		q[qarr[0]] = qarr[1];
+  	});
+  	return q;
+    }
+    let q = getq();
+    if (eval(q.reg)) {
+    	document.getElementById("des_1").innerHTML = "ランキングに登録する名前を<br>５文字以内で入力してください";
+    	document.getElementById("name").style.visibility = "visible";
+    	document.getElementById("subcan").innerHTML = "<p id=\"cancel\" onclick=\"anms();\">&#9654; キャンセル</p><p id=\"submit\" onclick=\"send()\">&#9654; ＯＫ</p>";
+    } else {
+    	anms();
+    }
+    function send() {
+    	document.getElementById("name").style.visibility = "hidden";
+    	let scoredata;
+    	fetch('https://mkybdev.com/crbrps/record.json')
+    	.then(response => response.text())
+    	.then(data => {
+    		let tmp = JSON.stringify(data);
+      		let tmpp = JSON.parse(tmp);
+      		scoredata = JSON.parse(tmpp);
+      		/*
+      		scoredata.forEach((x) => {
+      			x.score = parseInt(x.score);
+      		});
+      		*/
+      		let n = document.getElementById("name").value;
+      		//let idi = scoredata.findIndex(({id}) => id == userid);
+      		//let namei = scoredata.findIndex(({name}) => name == n);
+      		if (n.match(/とくめい/)) {
+      			document.getElementById("name").style.visibility = "visible";
+      			document.getElementById("des_2").innerHTML = "<font color=\"red\">その名前は使用できません</font>";
+        		return;
+      		} else if (n.match(/[0-9]/)) {
+      			document.getElementById("name").style.visibility = "visible";
+      			document.getElementById("des_2").innerHTML = "<font color=\"red\">半角数字は使用できません</font>";
+        		return;
+      		} else if (n == "") {
+      			document.getElementById("name").style.visibility = "visible";
+        		document.getElementById("des_2").innerHTML = "<font color=\"red\">名前を入力してください</font>";
+        		return;
+      		} else {
+      			document.getElementById("name").style.visibility = "hidden";
+      			document.getElementById("des_1").innerHTML = "ランキングに「" + n + "」<br>として登録しました";
+    			document.getElementById("des_2").innerHTML = "";
+    			document.getElementById("des_2").style.height = "0";
+    			document.getElementById("namew").innerHTML = "<p id=\"tweet\" onclick=\"tweet();\" style=\"font-size: 2.25vh; border: solid 2px white; border-radius: 20px; background-color: #00acee; width: fit-content; margin: 0.5em auto 1em auto; padding: 0 1em 0 1em;\"><i class=\"fa-brands fa-twitter\"></i> 結果をツイートする</p>";
+    			document.getElementById("subcan").innerHTML = "<p id=\"ok\" onclick=\"location.href=\'./\'\">&#9654; トップにもどる</p><p id=\"rkg\" onclick=\"location.href=\'./highscore.html\'\">&#9654; ランキングをみる</p>";
+    			record(n);
+      		}
+    	})
+    	.catch(e => {
+      		console.log("error");
+    	});
+    }
+    function anms() {
+    	document.getElementById("name").style.visibility = "hidden";
+    	document.getElementById("des_2").innerHTML = "";
+    	document.getElementById("des_2").style.height = "0";
+    	document.getElementById("namew").innerHTML = "<p id=\"tweet\" onclick=\"tweet();\" style=\"font-size: 2.25vh; border: solid 2px white; border-radius: 20px; background-color: #00acee; width: fit-content; margin: 0.5em auto 1em auto; padding: 0 1em 0 1em;\"><i class=\"fa-brands fa-twitter\"></i> 結果をツイートする</p>";
+    	document.getElementById("subcan").innerHTML = "<p id=\"ok\" onclick=\"location.href=\'./\'\">&#9654; トップにもどる</p><p id=\"rkg\" onclick=\"location.href=\'./highscore.html\'\">&#9654; ランキングをみる</p>";
+    	record("とくめい");
+    	document.getElementById("des_1").innerHTML = "ランキングに「とくめい」<br>として登録しました";
+    }
+    function tweet() {
+	let s = (q.score / 7 - 11)/255 + "ptで" + (q.rank / 11 - 13)/127 + "位でした！あなたもカニとじゃんけんしよう！";
+	let url = "https://mkybdev.com/crbrps/";
+	url = "http://twitter.com/share?url=" + url + "&text=" + s;
+		window.open(url,"_blank","width=600,height=300");
+    }
+    function record(name) {
+    	let scoredata;
+    	let anname;
+    	fetch('https://mkybdev.com/crbrps/record.json')
+    	.then(response => response.text())
+    	.then(data => {
+      		let tmp = JSON.stringify(data);
+      		let tmpp = JSON.parse(tmp);
+      		scoredata = JSON.parse(tmpp);
+      		/*
+      		scoredata.forEach((x) => {
+      			x.score = parseInt(x.score);
+      		});
+      		*/
+      		if (name == "とくめい") {
+      			for (let i = 1; ; i++) {
+      				let tmp = "とくめい" + String(i);
+      				if (!(tmp in scoredata)) {
+      					name = tmp;
+      					anname = tmp;
+      					break;
+      				}
+      			}
+      		}
+      		scoredata[name] = (q.score / 7 - 11)/255;
+  		let scarr = Object.keys(scoredata).map((k)=>({key:k,value:scoredata[k]}));
+  	scarr.sort(function (a, b) {
+    		if (a.value < b.value) {
+      			return 1;
+      		}
+    		if (a.value > b.value) {
+      			return -1;
+      		}
+    		return 0;
+  	});
+  	scoredata = Object.assign({}, ...scarr.map((item) => ({
+  		[item.key]: item.value,
+  	})));
+  		fetch('index.php', {
+    			method: 'POST',
+    			headers: { 'Content-Type': 'application/json' },
+    			body: JSON.stringify(scoredata)
+  		})
+  		.then(response => response.json())
+  		.then(res => {
+    			console.log(res);
+  		});
+    	})
+    	.catch(e => {
+      		console.log("error");
+    	});
+    }
+  </script>
+</body>
