@@ -169,7 +169,7 @@ function gameend() {
   	scoredata = Object.assign({}, ...scarr.map((item) => ({
   		[item.key]: item.value,
   	})));
-  	fetch('index.php', {
+  	fetch('http://mkybdev.cf/crbrps/index.php', {
     		method: 'POST',
     		headers: { 'Content-Type': 'application/json' },
     		body: JSON.stringify(scoredata)
