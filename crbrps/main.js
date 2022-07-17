@@ -126,7 +126,7 @@ function gameend() {
     }
   }
   let comment;
-  if (rank == 1) {
+  /*if (rank == 1) {
     comment = "すごい！";
   } else if (rank == 2) {
     comment = "おめでとう！";
@@ -139,14 +139,17 @@ function gameend() {
   } else {
     comment = "もう一息！";
   }
-  document.getElementById("crab").innerHTML += "<div id=\"mes\">" + comment + "<br>" + rank + "位だよ！</div>";
+  document.getElementById("crab").innerHTML += "<div id=\"mes\">" + comment + "<br>" + rank + "位だよ！</div>";*/
+  comment = "まだまだ！<br>がんばれ！";
+  document.getElementById("crab").innerHTML += "<div id=\"mes\">" + comment;
   document.getElementById("mes").style = "position: absolute; width: 15vh; height: 12vh; right: calc(50% - 17vh); top: 0.25vh; color: black; font-size: 2.25vh; display: flex; flex-direction: column; justify-content: center; align-items: center; font-family: PM-B;";
   document.getElementById("message").style.lineHeight = "1.75";
   let ch = document.getElementById("crabhand");
   ch.style.fontSize = "3.25vh";
   document.getElementById("myhand").style.lineHeight = "1.5";
-  let scstr = "今回のスコア：" + sc + "pt<br>(" + rank + "位 / " + crank + ")";
-  if (rank > 10) {
+  //let scstr = "今回のスコア：" + sc + "pt<br>(" + rank + "位 / " + crank + ")";
+  let scstr = "今回のスコア：" + sc + "pt";
+  //if (rank > 10) {
   	let keyarr = Object.keys(scoredata);
   	let num;
   	for (let i = 100000; ; i++) {
@@ -182,14 +185,14 @@ function gameend() {
   	document.getElementById("message").style.fontSize = "2.5vmax";
   	document.getElementById("message").innerHTML = "もう一度<br>プレイしますか？";
   	document.getElementById("myhand").innerHTML = "<a href=\"game.html\">&#9654; はい</a><a href=\"./\">&#9654; もどる</a>";
-  } else {
+  /*} else {
   	document.getElementById("message").style.fontSize = "2vmax";
   	document.getElementById("message").innerHTML = "ランキングに名前を<br>登録しますか？<br>「いいえ」を押すと<br>「とくめい」<br>で登録されます";
   	let url = "https://mkybdev.com/crbrps/register.html";
   	let sccrp = (sc*255 + 11) * 7;
   	let rkcrp = (rank*127 + 13) * 11;
   	document.getElementById("myhand").innerHTML = "<a href=\"" + url + "?reg=true&score=" + sccrp + "&rank=" + rkcrp + "\">&#9654; はい</a><a href=\"" + url + "?reg=false&score=" + sccrp + "&rank=" + rkcrp + "\">&#9654; いいえ</a>";
-  }
+  }*/
   ch.innerHTML = scstr;
 }
 
@@ -285,8 +288,9 @@ function result(m, n) {
 }
 
 function tweet() {
-	let s = sc + "ptで" + rank + "位でした！あなたもカニとじゃんけんしよう！";
+	//let s = sc + "ptで" + rank + "位でした！あなたもカニとじゃんけんしよう！";
+	let s = sc + "ptでした！あなたもカニとじゃんけんしよう！";
 	let url = "https://mkybdev.com/crbrps/";
-	url = "http://twitter.com/share?url=" + url + "&text=" + s;
+	url = "https://twitter.com/share?url=" + url + "&text=" + s;
 		window.open(url,"_blank","width=600,height=300");
 }
