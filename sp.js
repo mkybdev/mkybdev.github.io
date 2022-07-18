@@ -14,6 +14,7 @@ function clock() {
   let minute = twoDigit(now.getMinutes());
   document.getElementById("date").innerHTML = month + "月" + day + "日 " + week + "曜日";
   document.getElementById("clock").innerHTML = hour + ":" + minute;
+  document.getElementById("time").innerHTML = hour + ":" + minute + "<i class=\"fas fa-location-arrow\"></i>";
 }
 setInterval(clock, 60000);
 
@@ -31,10 +32,9 @@ function swipeup() {
   const y = box.getBoundingClientRect().top;
   if (y <= -0.2 * window.innerHeight) {
     $('#box').animate({
-      top: -100 * window.innerHeight,
-    }, 1000, 'swing');
+      top: -10 * window.innerHeight,
+    }, 2000, 'swing');
   } else {
-    console.log("test");
     $('#box').animate({
       top: 0,
       left: 0,

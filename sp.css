@@ -41,7 +41,7 @@ body {
   transform: translateX(-50%);
   -webkit-transform: translateX(-50%);
   -ms-transform: translateX(-50%);
-  z-index: 500;
+  z-index: 1000;
   text-align: center;
   pointer-events: none;
 }
@@ -63,11 +63,12 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   color: white;
+  z-index: 100;
 }
 
 #status {
   overflow: hidden;
-  padding: 4vh 6vw 2vh 6vw;
+  padding: 3.75vh 6vw 2vh 6vw;
   letter-spacing: 0.1em;
 }
 
@@ -130,6 +131,35 @@ body {
   border-radius: 10px;
   background-color: white;
 }
+
+#home {
+  position: absolute;
+  width: 82vw;
+  height: 85vh;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  padding: 0;
+  background-image: url(lockwp.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: white;
+  z-index: 10;
+}
+
+#time {
+  font-size: 2.75vw;
+  float: left;
+  font-weight: bold;
+}
+
+#time i {
+  margin-left: 1vw;
+  vertical-align: text-top;
+}
+
+
+
 
 .modal {
   display: none;
