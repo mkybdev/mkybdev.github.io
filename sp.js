@@ -1,5 +1,41 @@
+function clock() {
+  let twoDigit = function (num) {
+    //let digit;
+    //if (num < 10) { digit = "0" + num; }
+    //else { digit = num; }
+    return num;
+  }
+  let weeks = new Array("日", "月", "火", "水", "木", "金", "土");
+  let now = new Date();
+  let month = twoDigit(now.getMonth() + 1)
+  let day = twoDigit(now.getDate());
+  let week = weeks[now.getDay()];
+  let hour = twoDigit(now.getHours());
+  let minute = twoDigit(now.getMinutes());
+  document.getElementById("date").innerHTML = month + "月" + day + "日 " + week + "曜日";
+  document.getElementById("clock").innerHTML = hour + ":" + minute;
+}
+setInterval(clock, 60000);
+
+window.addEventListener('touchend', swipeup);
+
 jQuery(function () {
   jQuery('#box').draggable({
     axis: 'y',
+    scroll: false,
   });
 });
+
+function swipeup() {
+  const box = document.querySelector('#box');
+  const y = box.getBoundingClientRect().top;
+  if (y <= -0.2 * window.innerHeight) {
+    $('#box').animate({
+      top: -100 * window.innerHeight,
+    }, 1000, 'swing');
+  } else {
+    $('#box').animate({
+      top: 0,
+    }, 500, 'swing');
+  }
+}

@@ -1,10 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Roboto:wght@400;700&display=swap');
+
+@font-face {
+  font-family: 'sf';
+  src: url('font/SFUIDisplay-Regular.otf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'sf';
+  src: url('font/SFUIDisplay-Bold.ttf');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'sf';
+  src: url('font/SFUIDisplay-Light.ttf');
+  font-weight: lighter;
+  font-style: normal;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
 body {
-  margin: 0;
+  font-family: 'sf', 'Noto Sans JP', sans-serif;
 }
 
 #box {
-  width: calc(100vw - 20px);
-  height: calc(100vh - 20px);
-  margin: 10px;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-image: url(lockwp.jpg);
+  color: white;
+  position: relative;
+}
+
+#notch {
+  position: fixed;
+  inset: 0;
+  margin: 0 auto;
+  z-index: 100;
+  background-color: white;
+  width: 40vw;
+  height: 4vh;
+  border-radius: 0 0 50px 50px;
+}
+
+#status {
+  overflow: hidden;
+  padding: 2vh 7vw;
+  letter-spacing: 0.1em;
+}
+
+#career {
+  font-size: 2vh;
+  float: left;
+}
+
+#ind {
+  font-size: 2.25vh;
+  float: right;
+  padding-right: 0;
+}
+
+#ind i {
+  padding: 0 0.075em;
+}
+
+#lock {
+  text-align: center;
+  letter-spacing: 0.1em;
+}
+
+#lock i {
+  font-size: 10vw;
+}
+
+#clock {
+  padding-top: 1vh;
+  font-size: 17.5vw;
+  font-weight: lighter;
+}
+
+#date {
+  font-size: 5vw;
+  font-weight: lighter;
+}
+
+#stu {
+  position: absolute;
+  bottom: 5vh;
+  left: 50%;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  font-size: 5vw;
+}
+
+#navibar {
+  position: fixed;
+  bottom: 1vh;
+  width: 50vmin;
+  height: 0.75vh;
+  text-align: center;
+  left: calc(50% - 25vmin);
   border-radius: 10px;
+  background-color: white;
 }
