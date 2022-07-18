@@ -34,8 +34,14 @@ function swipeup() {
       top: -100 * window.innerHeight,
     }, 1000, 'swing');
   } else {
+    console.log("test");
     $('#box').animate({
       top: 0,
+      left: 0,
+      right: 0,
+      //marginLeft: auto,
+      //marginRight: auto,
+      padding: 0,
     }, 500, 'swing');
   }
 }
@@ -45,7 +51,7 @@ function stuanime() {
     $('#stu').animate({
       bottom: 0.075 * window.innerHeight,
       opacity: 1,
-    }, 1250, 'easeInOutQuart');
+    }, 1500, 'easeInOutQuart');
     $('#navibar').animate({
       bottom: 0.045 * window.innerHeight,
     }, 1000, 'swing', function () {
