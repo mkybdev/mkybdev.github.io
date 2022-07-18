@@ -17,16 +17,15 @@
 </head>
 
 <body>
-  <h1>Welcome!</h1>
-  <div id="log"></div>
+  <div id="log">SP PAGE</div>
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
   let isRot;
   function mediaCheck() {
-    if (window.parent.screen.width < window.parent.screen.height) {
-      location.href = "sp.html";
+    if (window.parent.screen.width >= window.parent.screen.height) {
+      location.href = "index.html";
     }
     isRot = true;
   }
