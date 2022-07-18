@@ -48,7 +48,6 @@
 </body>
 
 <script>
-  window.onload = clock();
   let isRot;
   function mediaCheck() {
     if (window.parent.screen.width >= window.parent.screen.height) {
@@ -67,15 +66,19 @@
       }
     }, { passive: false });
   }
-  window.onload = mediaCheck();
+  window.onload = function () {
+    mediaCheck();
+    clock();
+    stuanime();
+  }
   $(window).on("orientationchange", function () {
-    if (isRot) {
+    /*if (isRot) {
       document.getElementById("log").innerHTML = "DO NOT ROTATE";
       isRot = false;
     } else {
       document.getElementById("log").innerHTML = "";
       isRot = true;
-    }
+    }*/
   });
 </script>
 

@@ -1,16 +1,16 @@
 function clock() {
   let twoDigit = function (num) {
-    //let digit;
-    //if (num < 10) { digit = "0" + num; }
-    //else { digit = num; }
-    return num;
+    let digit;
+    if (num < 10) { digit = "0" + num; }
+    else { digit = num; }
+    return digit;
   }
   let weeks = new Array("日", "月", "火", "水", "木", "金", "土");
   let now = new Date();
-  let month = twoDigit(now.getMonth() + 1)
-  let day = twoDigit(now.getDate());
+  let month = now.getMonth() + 1;
+  let day = now.getDate();
   let week = weeks[now.getDay()];
-  let hour = twoDigit(now.getHours());
+  let hour = now.getHours();
   let minute = twoDigit(now.getMinutes());
   document.getElementById("date").innerHTML = month + "月" + day + "日 " + week + "曜日";
   document.getElementById("clock").innerHTML = hour + ":" + minute;
@@ -38,4 +38,20 @@ function swipeup() {
       top: 0,
     }, 500, 'swing');
   }
+}
+
+function stuanime() {
+  window.setTimeout(function () {
+    $('#stu').animate({
+      bottom: 0.05 * window.innerHeight,
+      opacity: 1,
+    }, 1250, 'easeInOutQuart');
+    $('#navibar').animate({
+      bottom: 0.025 * window.innerHeight,
+    }, 1000, 'swing', function () {
+      $('#navibar').animate({
+        bottom: 0.01 * window.innerHeight,
+      }, 2000, 'swing');
+    });
+  }, 500);
 }

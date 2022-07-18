@@ -94,7 +94,8 @@ body {
 
 #stu {
   position: absolute;
-  bottom: 5vh;
+  bottom: 2vh;
+  opacity: 0;
   left: 50%;
   transform: translateX(-50%);
   -webkit-transform: translateX(-50%);
