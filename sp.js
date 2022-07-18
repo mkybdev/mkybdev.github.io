@@ -43,14 +43,14 @@ function swipeup() {
 function stuanime() {
   window.setTimeout(function () {
     $('#stu').animate({
-      bottom: 0.05 * window.innerHeight,
+      bottom: 0.075 * window.innerHeight,
       opacity: 1,
     }, 1250, 'easeInOutQuart');
     $('#navibar').animate({
-      bottom: 0.025 * window.innerHeight,
+      bottom: 0.045 * window.innerHeight,
     }, 1000, 'swing', function () {
       $('#navibar').animate({
-        bottom: 0.01 * window.innerHeight,
+        bottom: 0.03 * window.innerHeight,
       }, 2000, 'swing');
     });
   }, 500);
