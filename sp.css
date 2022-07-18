@@ -26,14 +26,9 @@
   padding: 0px;
 }
 
-html {
-  height: -webkit-fill-available;
-}
-
 body {
   min-height: 100vh;
-  min-height: -webkit-fill-available;
-  border: 10px solid red;
+  min-height: calc(var(--vh, 1vh) * 100);
 }
 
 body {
