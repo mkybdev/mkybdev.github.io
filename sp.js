@@ -61,3 +61,14 @@ function stuanime() {
     });
   }, 500);
 }
+
+$(window).on("orientationchange", function () {
+  const modal = document.getElementById('rotmodal');
+  if (isRot) {
+    modal.style.display = 'block';
+    isRot = false;
+  } else {
+    modal.style.display = 'none';
+    isRot = true;
+  }
+});

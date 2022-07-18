@@ -45,6 +45,17 @@
     <div id="stu">上にスワイプして開く</div>
     <div id="navibar"></div>
   </div>
+  <div id="rotmodal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1>画面を回転させないでください</h1>
+      </div>
+      <div class="modal-body">
+        <p>このページはモバイル端末用に設計されています。</p>
+        <p>画面を元の向きに戻すか、ページをリロードしてください。</p>
+      </div>
+    </div>
+  </div>
 </body>
 
 <script>
@@ -72,15 +83,6 @@
     $('#navibar').css('bottom', 0.03 * window.innerHeight);
     stuanime();
   }
-  $(window).on("orientationchange", function () {
-    /*if (isRot) {
-      document.getElementById("log").innerHTML = "DO NOT ROTATE";
-      isRot = false;
-    } else {
-      document.getElementById("log").innerHTML = "";
-      isRot = true;
-    }*/
-  });
 </script>
 
 </html>
