@@ -30,6 +30,11 @@
       location.href = "sp.html";
     }
     isRot = true;
+    document.body.addEventListener('touchmove', (e) => {
+      if (e.touches.length > 1) {
+        e.preventDefault();
+      }
+    }, { passive: false });
   }
   window.onload = mediaCheck();
   $(window).on("orientationchange", function () {
