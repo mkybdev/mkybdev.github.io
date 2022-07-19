@@ -19,6 +19,44 @@ function clock() {
 setInterval(clock, 60000);
 
 window.addEventListener('touchend', swipeup);
+let boxtimer;
+window.addEventListener('touchstart', function () {
+  boxtimer = setInterval(function () {
+    const box = document.querySelector('#box');
+    const y = box.getBoundingClientRect().top;
+    //if (y < 0) {
+    /*$('#lwp').animate({
+      opacity: "0.5",
+    }, 100, 'swing');
+    boxflag = false;*/
+    //}
+    let lwpop;
+    let yrat = -y / window.innerHeight;
+    if (yrat < 0.45) {
+      lwpop = 1 - 1 / 7 * Math.log(1 + yrat);
+    } else {
+      lwpop = 1 - 1 / 7 * Math.log(1.45);
+    }
+    document.getElementById("lwp").style.opacity = lwpop;
+    document.getElementById("hstatus").style.opacity = 1 / 2 * Math.exp(yrat) - 1 / 2;
+    if (yrat >= 0.45) {
+      lockopen();
+    }
+    if (y == 0) {
+      //document.getElementById("dock").style.bottom = "-10vh";
+      $('#dock').addClass("hidedock");
+      /*$('#lwp').animate({
+        opacity: "1",
+      }, 10, 'swing');
+      boxflag = true;*/
+      document.getElementById("lwp").style.filter = "blur(0)";
+      $('#apps').removeClass("active");
+    } else {
+      document.getElementById("lwp").style.filter = "blur(" + 80 * yrat + "px)";
+    }
+    $('.hidedock').css("bottom", "-10vh");
+  }, 200);
+});
 
 jQuery(function () {
   jQuery('#box').draggable({
@@ -39,42 +77,6 @@ function lockopen() {
 
 //let boxflag = true;
 
-const boxtimer = setInterval(function () {
-  const box = document.querySelector('#box');
-  const y = box.getBoundingClientRect().top;
-  //if (y < 0) {
-  /*$('#lwp').animate({
-    opacity: "0.5",
-  }, 100, 'swing');
-  boxflag = false;*/
-  //}
-  let lwpop;
-  let yrat = -y / window.innerHeight;
-  if (yrat < 0.45) {
-    lwpop = 1 - 1 / 7 * Math.log(1 + yrat);
-  } else {
-    lwpop = 1 - 1 / 7 * Math.log(1.45);
-  }
-  document.getElementById("lwp").style.opacity = lwpop;
-  document.getElementById("hstatus").style.opacity = 1 / 2 * Math.exp(yrat) - 1 / 2;
-  if (yrat >= 0.45) {
-    lockopen();
-  }
-  if (y == 0) {
-    //document.getElementById("dock").style.bottom = "-10vh";
-    $('#dock').addClass("hidedock");
-    /*$('#lwp').animate({
-      opacity: "1",
-    }, 10, 'swing');
-    boxflag = true;*/
-    document.getElementById("lwp").style.filter = "blur(0)";
-    $('#apps').removeClass("active");
-  } else {
-    document.getElementById("lwp").style.filter = "blur(" + 80 * yrat + "px)";
-  }
-  $('.hidedock').css("bottom", "-10vh");
-}, 100);
-
 function swipeup() {
   const box = document.querySelector('#box');
   const y = box.getBoundingClientRect().top;
@@ -91,7 +93,7 @@ function swipeup() {
       right: 0,
       padding: 0,
     }, 500, 'easeOutQuart', function () {
-      //document.getElementById("dock").style.bottom = "-10vh";
+      clearInterval(boxtimer);
     });
   }
 }
