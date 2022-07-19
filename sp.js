@@ -72,7 +72,9 @@ function lockopen() {
   const app_1 = document.getElementById("app1");
   $('#dock').animate({
     bottom: 0.0325 * window.innerHeight,
-  }, 500, 'swing');
+  }, 500, 'swing', function () {
+    document.getElementById("hstatus").style.opacity = 1;
+  });
 }
 
 //let boxflag = true;
