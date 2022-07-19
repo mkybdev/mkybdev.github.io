@@ -53,6 +53,7 @@ window.addEventListener('touchstart', function () {
       boxflag = true;*/
       //document.getElementById("lwp").style.filter = "blur(0)";
       $('#apps').removeClass("active");
+      $('#uapps').removeClass("uactive");
     } else {
       //document.getElementById("lwp").style.filter = "blur(" + 80 * yrat + "px)";
     }
@@ -70,6 +71,7 @@ jQuery(function () {
 
 function lockopen() {
   $('#apps').addClass("active");
+  $('#uapps').addClass("uactive");
   $('#dock').removeClass("hidedock");
   const app_1 = document.getElementById("app1");
   $('#dock').animate({

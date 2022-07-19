@@ -88,13 +88,27 @@
         <div class="appicon" id="app8i"></div>
         <p class="appdsc" id="app8d">8</p>
       </div>
+      <div class="app" id="appclock">
+        <div class="appicon" id="appclocki"></div>
+        <p class="appdsc" id="appclockd">時計</p>
+      </div>
+    </div>
+    <div id="uapps">
       <div class="app" id="app9">
         <div class="appicon" id="app9i"></div>
         <p class="appdsc" id="app9d">9</p>
       </div>
-      <div class="app" id="appclock">
-        <div class="appicon" id="appclocki"></div>
-        <p class="appdsc" id="appclockd">時計</p>
+      <div class="app" id="app10">
+        <div class="appicon" id="app10i"></div>
+        <p class="appdsc" id="app10d">10</p>
+      </div>
+      <div class="app" id="app11">
+        <div class="appicon" id="app11i"></div>
+        <p class="appdsc" id="app11d">11</p>
+      </div>
+      <div class="app" id="app12">
+        <div class="appicon" id="app12i"></div>
+        <p class="appdsc" id="app12d">12</p>
       </div>
     </div>
     <div id="dock">
@@ -115,7 +129,7 @@
       </div>
     </div>
   </div>
-  test3
+  test5
 </body>
 
 <script>
@@ -142,6 +156,7 @@
     clock();
     $('#navibar').css('bottom', 0.03 * window.innerHeight);
     stuanime();
+    $('#uapps').css("top", document.getElementById('hstatus').offsetHeight + document.getElementById('apps').offsetHeight);
   }
 </script>
 

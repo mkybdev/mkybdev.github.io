@@ -188,23 +188,40 @@ body {
   position: absolute;
   width: 64vw;
   height: auto;
-  padding: 4vw 4vw;
+  padding: 4vw 4vw 0 4vw;
+  text-align: center;
+  left: calc(50% - 36vw);
+  opacity: 0;
+}
+
+#uapps {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 0 6vw;
+  position: absolute;
+  width: 64vw;
+  height: auto;
+  padding: 0 4vw 4vw 4vw;
   text-align: center;
   left: calc(50% - 36vw);
   opacity: 0;
 }
 
 .active {
-  animation: appanime forwards 1s 1 cubic-bezier(0.075, 0.820, 0.165, 1.000) normal;
+  animation: appanime forwards 0.75s 1 cubic-bezier(0.075, 0.820, 0.165, 1.000) normal;
+}
+
+.uactive {
+  animation: uappanime forwards 0.75s 1 cubic-bezier(0.075, 0.820, 0.165, 1.000) normal;
 }
 
 @keyframes appanime {
   0% {
-    top: -50vh;
+    top: -400vh;
     opacity: 1;
-    width: 200vw;
-    height: 75vh;
-    left: calc(50% - 104vw);
+    width: 800vw;
+    height: auto;
+    left: calc(50% - 404vw);
   }
 
   /*50% {
@@ -215,6 +232,30 @@ body {
 
   100% {
     top: 7.5vh;
+    opacity: 1;
+    width: 64vw;
+    height: auto;
+    left: calc(50% - 36vw);
+  }
+}
+
+@keyframes uappanime {
+  0% {
+    top: 150vh;
+    opacity: 1;
+    width: 400vw;
+    height: auto;
+    left: calc(50% - 204vw);
+  }
+
+  /*50% {
+    width: 100vw;
+    height: 100vh;
+    left: calc(50% - 54vw);
+  }*/
+
+  100% {
+    /*top: 7.5vh;*/
     opacity: 1;
     width: 64vw;
     height: auto;
