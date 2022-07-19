@@ -55,7 +55,7 @@ window.addEventListener('touchstart', function () {
       document.getElementById("lwp").style.filter = "blur(" + 80 * yrat + "px)";
     }
     $('.hidedock').css("bottom", "-10vh");
-  }, 200);
+  }, 500);
 });
 
 jQuery(function () {
