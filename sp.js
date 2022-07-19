@@ -88,6 +88,7 @@ function swipeup() {
     }, 500, 'easeInOutSine', function () {
       clearInterval(boxtimer);
     });
+    lockopen();
   } else {
     $('#box').animate({
       top: 0,
