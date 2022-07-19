@@ -32,6 +32,7 @@ window.addEventListener('touchstart', function () {
     //}
     let lwpop;
     let yrat = -y / window.innerHeight;
+    /*
     if (yrat < 0.45) {
       lwpop = 1 - 1 / 7 * Math.log(1 + yrat);
     } else {
@@ -39,6 +40,7 @@ window.addEventListener('touchstart', function () {
     }
     document.getElementById("lwp").style.opacity = lwpop;
     document.getElementById("hstatus").style.opacity = 1 / 2 * Math.exp(yrat) - 1 / 2;
+    */
     if (yrat >= 0.45) {
       lockopen();
     }
@@ -49,10 +51,10 @@ window.addEventListener('touchstart', function () {
         opacity: "1",
       }, 10, 'swing');
       boxflag = true;*/
-      document.getElementById("lwp").style.filter = "blur(0)";
+      //document.getElementById("lwp").style.filter = "blur(0)";
       $('#apps').removeClass("active");
     } else {
-      document.getElementById("lwp").style.filter = "blur(" + 80 * yrat + "px)";
+      //document.getElementById("lwp").style.filter = "blur(" + 80 * yrat + "px)";
     }
     $('.hidedock').css("bottom", "-10vh");
   }, 500);
