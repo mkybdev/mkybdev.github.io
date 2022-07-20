@@ -57,7 +57,7 @@ window.addEventListener('touchstart', function () {
     } else {
       //document.getElementById("lwp").style.filter = "blur(" + 80 * yrat + "px)";
     }
-    $('.hidedock').css("bottom", "-20vh");
+    $('.hidedock').css("bottom", "-50vh");
   }, 500);
 });
 
@@ -89,7 +89,7 @@ function swipeup() {
   if (y <= -0.2 * window.innerHeight) {
     $('#box').animate({
       top: -1 * window.innerHeight,
-    }, 375, 'easeInOutSine', function () {
+    }, 350, 'easeInOutSine', function () {
       clearInterval(boxtimer);
     });
     lockopen();

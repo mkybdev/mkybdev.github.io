@@ -295,7 +295,7 @@ body {
 #dock {
   background-color: rgba(0, 0, 0, 0.35);
   position: absolute;
-  bottom: -20vh;
+  bottom: -50vh;
   width: 64vw;
   height: auto;
   text-align: center;
