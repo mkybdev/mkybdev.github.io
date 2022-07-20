@@ -129,7 +129,7 @@
       </div>
     </div>
   </div>
-  test6
+  test7
 </body>
 
 <script>
@@ -156,8 +156,8 @@
     clock();
     $('#navibar').css('bottom', 0.03 * window.innerHeight);
     stuanime();
-    $('#uapps').css("top", 0.01 * (800 - screen.width) + document.querySelector('#hstatus').getBoundingClientRect().height + document.querySelector('#apps').getBoundingClientRect().height);
-    console.log(screen.width);
+    $('#uapps').css("top", 50 * (0.6 - screen.width / screen.height) + document.querySelector('#hstatus').getBoundingClientRect().height + document.querySelector('#apps').getBoundingClientRect().height);
+    console.log(screen.width / screen.height);
   }
 </script>
 
