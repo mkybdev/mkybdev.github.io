@@ -89,7 +89,7 @@ function swipeup() {
   if (y <= -0.2 * window.innerHeight) {
     $('#box').animate({
       top: -1 * window.innerHeight,
-    }, 500, 'easeInOutSine', function () {
+    }, 375, 'easeInOutSine', function () {
       clearInterval(boxtimer);
     });
     lockopen();
