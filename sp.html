@@ -156,7 +156,8 @@
     clock();
     $('#navibar').css('bottom', 0.03 * window.innerHeight);
     stuanime();
-    $('#uapps').css("top", document.getElementById('hstatus').offsetHeight + document.getElementById('apps').offsetHeight);
+    $('#uapps').css("top", 0.01 * (800 - screen.width) + document.querySelector('#hstatus').getBoundingClientRect().height + document.querySelector('#apps').getBoundingClientRect().height);
+    console.log(screen.width);
   }
 </script>
 

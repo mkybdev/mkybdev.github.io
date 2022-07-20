@@ -208,11 +208,11 @@ body {
 }
 
 .active {
-  animation: appanime forwards 0.75s 1 cubic-bezier(0.075, 0.820, 0.165, 1.000) normal;
+  animation: appanime forwards 0.75s 1 cubic-bezier(0, 1.06, 0, 1) normal;
 }
 
 .uactive {
-  animation: uappanime forwards 0.75s 1 cubic-bezier(0.075, 0.820, 0.165, 1.000) normal;
+  animation: uappanime forwards 0.75s 1 cubic-bezier(0, 1.06, 0, 1) normal;
 }
 
 @keyframes appanime {

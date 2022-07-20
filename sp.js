@@ -76,7 +76,7 @@ function lockopen() {
   const app_1 = document.getElementById("app1");
   $('#dock').animate({
     bottom: 0.0325 * window.innerHeight,
-  }, 500, 'swing', function () {
+  }, 750, 'easeOutQuart', function () {
     document.getElementById("hstatus").style.opacity = 1;
   });
 }
