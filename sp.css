@@ -23,7 +23,7 @@
 
 @font-face {
   font-family: 'sfr';
-  src: url('font/SF-Compact-Rounded-Semibold.otf');
+  src: url('font/SF-Compact-Rounded-Medium.otf');
   font-weight: normal;
   font-style: normal;
 }
@@ -295,7 +295,7 @@ body {
 #dock {
   background-color: rgba(0, 0, 0, 0.35);
   position: absolute;
-  bottom: -10vh;
+  bottom: -20vh;
   width: 64vw;
   height: auto;
   text-align: center;
