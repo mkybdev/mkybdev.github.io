@@ -16,7 +16,7 @@ function clock() {
   document.getElementById("clock").innerHTML = hour + ":" + minute;
   document.getElementById("time").innerHTML = hour + ":" + minute + "<i class=\"fas fa-location-arrow\"></i>";
 }
-setInterval(clock, 60000);
+setInterval(clock, 1000);
 
 window.addEventListener('touchend', swipeup);
 let boxtimer;
@@ -121,7 +121,153 @@ function stuanime() {
   }, 500);
 }
 
+let wrapper = null;
+let canvas = null;
+let g = null;
+let clock_size;
+let scale;
+let center = { x: 0, y: 0 };
+let $id = function (id) { return document.getElementById(id); };
+const clock_bg = "white";
+const clock_ct = "#ec8e17";
+const clock_wf = "black";
+const clock_wfs = "#c2c2c2";
+const clock_num = "black"
+const clock_hour = "black";
+const clock_min = "black";
+const clock_sec = "#ec8e17";
+/*canvas.width = wrapper.offsetWidth;
+canvas.height = wrapper.offsetHeight;
+center.x = canvas.width / 2;
+center.y = canvas.height / 2;
+clock_size = canvas.width >= canvas.height ? canvas.height : canvas.width;
+scale = clock_size / 500.0;*/
 
+function clockdisp() {
+  g.save();
+
+  g.translate(center.x, center.y);
+  g.scale(scale, scale);
+  g.fillStyle = clock_bg;
+  g.beginPath();
+  g.arc(0, 0, 200, 0, Math.PI * 2, true);
+  g.fill();
+
+  g.rotate(-Math.PI / 2);
+  g.lineCap = "round";
+
+  let now = new Date();
+
+  let hour = now.getHours();
+  let minute = now.getMinutes();
+  let second = now.getSeconds() + 0.001 * now.getMilliseconds();
+
+  hour = hour >= 12 ? hour - 12 : hour;
+
+  g.save();
+  g.strokeStyle = clock_wfs;
+  g.lineWidth = 5;
+  g.beginPath();
+  for (let i = 0; i < 60; i++) {
+    g.rotate(Math.PI / 30);
+    //if (i % 6 == 0) { continue; }
+    g.moveTo(175, 0);
+    g.lineTo(187.5, 0);
+  }
+  g.stroke();
+  g.restore();
+
+  g.save();
+  g.strokeStyle = clock_wf;
+  g.lineWidth = 5;
+  g.beginPath();
+  for (let i = 0; i < 12; i++) {
+    g.rotate(Math.PI / 6);
+    g.moveTo(175, 0);
+    g.lineTo(187.5, 0);
+  }
+  g.stroke();
+  g.restore();
+
+  g.save();
+  g.rotate(Math.PI / 2);
+  g.fillStyle = clock_num;
+  g.font = "normal 50px 'sfr'";
+  g.textBaseline = "middle";
+  let angle = -60;
+  let offset = [10, 10, 10, 15, 15, 15, 15, 15, 17.5, 17.5, 17.5, 25];
+  let yoffset = [0, 0, -2.5, -2.5, -5, -5, 0, 0, -2.5, -2.5, -2.5, 0];
+  let r = 140;
+  i = 1;
+  while (i <= 12) {
+    let radian = angle * Math.PI / 180;
+    let x = r * Math.cos(radian);
+    let y = r * Math.sin(radian);
+    g.fillText(i, x - offset[i - 1], y - yoffset[i - 1]);
+    angle += 30;
+    i++;
+  }
+  g.restore();
+
+  g.save();
+  g.rotate(hour * (Math.PI / 6) + minute * (Math.PI / 360) + second * (Math.PI / 21600));
+  g.lineWidth = 7.5;
+  g.strokeStyle = clock_hour;
+  g.beginPath();
+  g.moveTo(0, 0);
+  g.lineTo(30, 0);
+  g.stroke();
+  g.lineWidth = 15;
+  g.strokeStyle = clock_hour;
+  g.beginPath();
+  g.moveTo(35, 0);
+  g.lineTo(100, 0);
+  g.stroke();
+  g.restore();
+
+  g.save();
+  g.rotate(minute * (Math.PI / 30) + second * (Math.PI / 1800));
+  g.lineWidth = 7.5;
+  g.strokeStyle = clock_min;
+  g.beginPath();
+  g.moveTo(0, 0);
+  g.lineTo(30, 0);
+  g.stroke();
+  g.lineWidth = 15;
+  g.strokeStyle = clock_min;
+  g.beginPath();
+  g.moveTo(35, 0);
+  g.lineTo(178.5, 0);
+  g.stroke();
+  g.restore();
+
+  g.fillStyle = "black";
+  g.beginPath();
+  g.arc(0, 0, 12, 0, Math.PI * 2, true);
+  g.fill();
+
+  g.fillStyle = clock_ct;
+  g.beginPath();
+  g.arc(0, 0, 8, 0, Math.PI * 2, true);
+  g.fill();
+
+  g.rotate(second * Math.PI / 30);
+  g.strokeStyle = clock_sec;
+  g.lineWidth = 3.5;
+  g.beginPath();
+  g.moveTo(-25, 0);
+  g.lineTo(187.5, 0);
+  g.stroke();
+
+  g.fillStyle = "white";
+  g.beginPath();
+  g.arc(0, 0, 4, 0, Math.PI * 2, true);
+  g.fill();
+
+  g.restore();
+
+  setTimeout(clockdisp, 1);
+}
 
 
 $(window).on("orientationchange", function () {
