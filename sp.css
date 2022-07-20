@@ -80,6 +80,27 @@ body {
   left: 0;
   top: 0;
   pointer-events: none;
+  opacity: 1;
+}
+
+.lwpactive {
+  animation: blr 0.25s ease forwards;
+}
+
+.lwpactiver {
+  animation: blrr 0.5s ease forwards;
+}
+
+@keyframes blr {
+  100% {
+    filter: blur(10px);
+  }
+}
+
+@keyframes blrr {
+  100% {
+    filter: blur(0);
+  }
 }
 
 #box .status {
@@ -94,6 +115,10 @@ body {
   overflow: hidden;
   padding: 3.75vh 6vw 2vh 6vw;
   letter-spacing: 0.1em;
+}
+
+#hstatus {
+  opacity: 0;
 }
 
 #career {

@@ -20,16 +20,19 @@ setInterval(clock, 1000);
 
 window.addEventListener('touchend', swipeup);
 let boxtimer;
+let boxflag = true;
 window.addEventListener('touchstart', function () {
   boxtimer = setInterval(function () {
     const box = document.querySelector('#box');
     const y = box.getBoundingClientRect().top;
-    //if (y < 0) {
-    /*$('#lwp').animate({
-      opacity: "0.5",
-    }, 100, 'swing');
-    boxflag = false;*/
-    //}
+    if (y < 0 && boxflag) {
+      $('#lwp').removeClass("lwpactiver");
+      $('#lwp').addClass("lwpactive");
+      $('#lwp').animate({
+        opacity: 0.95,
+      }, 100, 'swing');
+      boxflag = false;
+    }
     let lwpop;
     let yrat = -y / window.innerHeight;
     /*
@@ -58,7 +61,7 @@ window.addEventListener('touchstart', function () {
       //document.getElementById("lwp").style.filter = "blur(" + 80 * yrat + "px)";
     }
     $('.hidedock').css("bottom", "-50vh");
-  }, 500);
+  }, 100);
 });
 
 jQuery(function () {
@@ -77,16 +80,17 @@ function lockopen() {
   $('#dock').animate({
     bottom: 0.0325 * window.innerHeight,
   }, 750, 'easeOutQuart', function () {
-    document.getElementById("hstatus").style.opacity = 1;
+    //document.getElementById("hstatus").style.opacity = 1;
   });
 }
-
-//let boxflag = true;
 
 function swipeup() {
   const box = document.querySelector('#box');
   const y = box.getBoundingClientRect().top;
   if (y <= -0.2 * window.innerHeight) {
+    $('#hstatus').animate({
+      opacity: 1,
+    }, 300, 'swing');
     $('#box').animate({
       top: -1 * window.innerHeight,
     }, 350, 'easeInOutSine', function () {
@@ -94,13 +98,20 @@ function swipeup() {
     });
     lockopen();
   } else {
+    clearInterval(boxtimer);
+    $('#lwp').addClass("lwpactiver");
+    $('#lwp').removeClass("lwpactive");
+    $('#lwp').animate({
+      opacity: 1,
+    }, 500, 'swing');
+    boxflag = true;
     $('#box').animate({
       top: 0,
       left: 0,
       right: 0,
       padding: 0,
     }, 500, 'easeOutQuart', function () {
-      clearInterval(boxtimer);
+      //clearInterval(boxtimer);
     });
   }
 }
