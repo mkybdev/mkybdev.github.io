@@ -23,38 +23,17 @@ let boxtimer;
 let boxflag = true;
 window.addEventListener('touchstart', function () {
   $('#lwp').removeClass("lwpactiver");
-  boxtimer = setInterval(function () {
+  /*boxtimer = setInterval(function () {
     const box = document.querySelector('#box');
     const y = box.getBoundingClientRect().top;
-    /*if (y < 0 && boxflag) {
-      $('#lwp').removeClass("lwpactiver");
-      //$('#lwp').addClass("lwpactive");
-      $('#lwp').animate({
-        opacity: 0.95,
-      }, 100, 'swing');
-      boxflag = false;
-    }*/
     let lwpop;
     let yrat = -y / window.innerHeight;
-    /*
-    if (yrat < 0.45) {
-      lwpop = 1 - 1 / 7 * Math.log(1 + yrat);
-    } else {
-      lwpop = 1 - 1 / 7 * Math.log(1.45);
-    }
-    document.getElementById("lwp").style.opacity = lwpop;
-    document.getElementById("hstatus").style.opacity = 1 / 2 * Math.exp(yrat) - 1 / 2;
-    */
     if (yrat >= 0.45) {
       lockopen();
     }
     if (y == 0) {
       //document.getElementById("dock").style.bottom = "-10vh";
       $('#dock').addClass("hidedock");
-      /*$('#lwp').animate({
-        opacity: "1",
-      }, 10, 'swing');
-      boxflag = true;*/
       //document.getElementById("lwp").style.filter = "blur(0)";
       $('#apps').removeClass("active");
       $('#uapps').removeClass("uactive");
@@ -62,11 +41,17 @@ window.addEventListener('touchstart', function () {
       //document.getElementById("lwp").style.filter = "blur(" + 80 * yrat + "px)";
     }
     $('.hidedock').css("bottom", "-50vh");
-  }, 500);
+  }, 500);*/
 });
 
 window.addEventListener('touchmove', function () {
   $('#lwp').addClass("lwpactive");
+  const box = document.querySelector('#box');
+  const y = box.getBoundingClientRect().top;
+  let yrat = -y / window.innerHeight;
+  if (yrat >= 0.45) {
+    lockopen();
+  }
 });
 
 /*$('#box').on('touchmove', function () {
@@ -103,13 +88,12 @@ function swipeup() {
     $('#box').animate({
       top: -1 * window.innerHeight,
     }, 350, 'easeInOutSine', function () {
-      clearInterval(boxtimer);
+      //clearInterval(boxtimer);
     });
     lockopen();
   } else {
-    clearInterval(boxtimer);
+    //clearInterval(boxtimer);
     $('#dock').addClass("hidedock");
-    $('#dock').css("bottom", "-50vh");
     $('#apps').removeClass("active");
     $('#uapps').removeClass("uactive");
     $('#lwp').removeClass("lwpactive");
@@ -124,6 +108,8 @@ function swipeup() {
       right: 0,
       padding: 0,
     }, 500, 'easeOutQuart', function () {
+      $('#dock').css("bottom", "-50vh");
+      $('#dock').addClass("hidedock");
       //clearInterval(boxtimer);
     });
   }
