@@ -94,12 +94,14 @@ body {
 @keyframes blr {
   100% {
     filter: blur(10px);
+    opacity: 0.95;
   }
 }
 
 @keyframes blrr {
   100% {
     filter: blur(0);
+    opacity: 1;
   }
 }
 

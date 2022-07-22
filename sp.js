@@ -22,17 +22,18 @@ window.addEventListener('touchend', swipeup);
 let boxtimer;
 let boxflag = true;
 window.addEventListener('touchstart', function () {
+  $('#lwp').removeClass("lwpactiver");
   boxtimer = setInterval(function () {
     const box = document.querySelector('#box');
     const y = box.getBoundingClientRect().top;
-    if (y < 0 && boxflag) {
+    /*if (y < 0 && boxflag) {
       $('#lwp').removeClass("lwpactiver");
-      $('#lwp').addClass("lwpactive");
+      //$('#lwp').addClass("lwpactive");
       $('#lwp').animate({
         opacity: 0.95,
       }, 100, 'swing');
       boxflag = false;
-    }
+    }*/
     let lwpop;
     let yrat = -y / window.innerHeight;
     /*
@@ -61,8 +62,16 @@ window.addEventListener('touchstart', function () {
       //document.getElementById("lwp").style.filter = "blur(" + 80 * yrat + "px)";
     }
     $('.hidedock').css("bottom", "-50vh");
-  }, 100);
+  }, 500);
 });
+
+window.addEventListener('touchmove', function () {
+  $('#lwp').addClass("lwpactive");
+});
+
+/*$('#box').on('touchmove', function () {
+  $('#lwp').addClass("lwpactive");
+})*/
 
 jQuery(function () {
   jQuery('#box').draggable({
@@ -99,11 +108,15 @@ function swipeup() {
     lockopen();
   } else {
     clearInterval(boxtimer);
-    $('#lwp').addClass("lwpactiver");
+    $('#dock').addClass("hidedock");
+    $('#dock').css("bottom", "-50vh");
+    $('#apps').removeClass("active");
+    $('#uapps').removeClass("uactive");
     $('#lwp').removeClass("lwpactive");
-    $('#lwp').animate({
+    $('#lwp').addClass("lwpactiver");
+    /*$('#lwp').animate({
       opacity: 1,
-    }, 500, 'swing');
+    }, 500, 'swing');*/
     boxflag = true;
     $('#box').animate({
       top: 0,
