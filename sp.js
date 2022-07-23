@@ -66,7 +66,10 @@ jQuery(function () {
   });
 });
 
+//let lockflag = true;
+
 function lockopen() {
+  //if (lockflag) {
   $('#apps').addClass("active");
   $('#uapps').addClass("uactive");
   $('#dock').removeClass("hidedock");
@@ -76,6 +79,7 @@ function lockopen() {
   }, 750, 'easeOutQuart', function () {
     //document.getElementById("hstatus").style.opacity = 1;
   });
+  //}
 }
 
 function swipeup() {
@@ -90,6 +94,7 @@ function swipeup() {
     }, 350, 'easeInOutSine', function () {
       //clearInterval(boxtimer);
     });
+    //lockflag = false;
     lockopen();
   } else {
     //clearInterval(boxtimer);
@@ -279,7 +284,6 @@ function clockdisp() {
 
   setTimeout(clockdisp, 1);
 }
-
 
 $(window).on("orientationchange", function () {
   const modal = document.getElementById('rotmodal');
